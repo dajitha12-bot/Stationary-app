@@ -1,0 +1,108 @@
+{
+  "responses": [
+    {
+      "question": "hello",
+      "answer": "Hello! How can I assist you with your stationery needs today?"
+    },
+    {
+      "question": "hi",
+      "answer": "Hi there! Welcome to PinkStationery. How can I help you?"
+    },
+    {
+      "question": "how are you",
+      "answer": "I'm doing great, thank you! Ready to help you find the perfect stationery."
+    },
+    {
+      "question": "what are your business hours",
+      "answer": "We're open Monday to Saturday from 9:00 AM to 8:00 PM."
+    },
+    {
+      "question": "do you offer free shipping",
+      "answer": "Yes! We offer free shipping on all orders above ₹499."
+    },
+    {
+      "question": "what payment methods do you accept",
+      "answer": "We accept credit/debit cards, UPI, net banking, and cash on delivery."
+    },
+    {
+      "question": "can i return a product",
+      "answer": "Yes, we have a 7-day return policy for unused products in original packaging."
+    },
+    {
+      "question": "where is your store located",
+      "answer": "Our main store is at 123 Stationery Street, Pink City. You can also shop online!"
+    },
+    {
+      "question": "do you have notebooks",
+      "answer": "Yes! We have a wide variety of notebooks in different sizes and designs."
+    },
+    {
+      "question": "what types of pens do you sell",
+      "answer": "We sell ballpoint pens, gel pens, fountain pens, and highlighters."
+    },
+    {
+      "question": "do you have art supplies",
+      "answer": "Absolutely! We have color pencils, sketchbooks, watercolors, and more."
+    },
+    {
+      "question": "how can i track my order",
+      "answer": "You can track your order from the \"My Orders\" section with your order ID."
+    },
+    {
+      "question": "do you have gift items",
+      "answer": "Yes, we have gift sets, decorative stationery, and personalized items."
+    },
+    {
+      "question": "what is your phone number",
+      "answer": "You can reach us at +91-9876543210 during business hours."
+    },
+    {
+      "question": "do you have backpacks",
+      "answer": "Yes, we have school bags, laptop bags, and backpacks in various designs."
+    },
+    {
+      "question": "are your products eco-friendly",
+      "answer": "We have a range of eco-friendly products made from recycled materials."
+    },
+    {
+      "question": "do you offer discounts",
+      "answer": "We have regular sales and discounts. Subscribe to our newsletter for updates!"
+    },
+    {
+      "question": "how long does delivery take",
+      "answer": "Delivery usually takes 3-5 business days depending on your location."
+    },
+    {
+      "question": "can i cancel my order",
+      "answer": "You can cancel your order within 24 hours of placing it."
+    },
+    {
+      "question": "do you have sticky notes",
+      "answer": "Yes, we have sticky notes in various colors, shapes and sizes."
+    },
+    {
+      "question": "what brands do you carry",
+      "answer": "We carry popular brands like Classmate, Parker, Camlin, and many more."
+    },
+    {
+      "question": "do you have planners",
+      "answer": "Yes, we have daily, weekly, and monthly planners in different styles."
+    },
+    {
+      "question": "can i order in bulk",
+      "answer": "Yes, we offer special discounts for bulk orders. Contact us for details."
+    },
+    {
+      "question": "do you have markers",
+      "answer": "We have permanent markers, whiteboard markers, and highlighters."
+    },
+    {
+      "question": "what is your bestseller",
+      "answer": "Our gel pen sets and decorative notebooks are customer favorites!"
+    },
+    {
+      "question": "thank you",
+      "answer": "You're welcome! Let me know if you need anything else."
+    }
+  ]
+}

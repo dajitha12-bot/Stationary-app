@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - PinkStationery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Cotton Candy Pink Theme - Same as cart.html */
+        :root {
+            --primary-pink: #ffb6c1;
+            --light-pink: #ffd1dc;
+            --dark-pink: #ff91a4;
+            --accent-pink: #ff69b4;
+            --white: #ffffff;
+            --light-gray: #f8f8f8;
+            --text-color: #333333;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, 
+                #ffb6c1 0%, 
+                #ffd1dc 25%, 
+                #ffecf0 50%, 
+                #ffd1dc 75%, 
+                #ffb6c1 100%);
+            background-attachment: fixed;
+            background-size: 400% 400%;
+            animation: cottonCandyShift 15s ease infinite;
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        @keyframes cottonCandyShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header Styles - Same as cart.html */
+        header {
+            background: linear-gradient(135deg, var(--primary-pink), var(--accent-pink));
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 50%;
+            border: 2px solid var(--white);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-bar {
+            display: flex;
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 25px 0 0 25px;
+            font-size: 1rem;
+            outline: none;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .search-bar button {
+            padding: 0.8rem 1.2rem;
+            background: var(--dark-pink);
+            color: var(--white);
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: var(--accent-pink);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .cart-count, .wishlist-count {
+            background: var(--white);
+            color: var(--accent-pink);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Categories Page Styles */
+        .categories-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .categories-header h2 {
+            font-size: 2rem;
+            color: var(--dark-pink);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-select {
+            padding: 0.7rem 1rem;
+            border: 1px solid var(--light-pink);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-color);
+            outline: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .filter-select:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.2);
+        }
+
+        /* Products Grid */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .products-container.horizontal-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 1rem 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-pink) var(--light-pink);
+        }
+
+        .products-container.horizontal-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .products-container.horizontal-scroll::-webkit-scrollbar-track {
+            background: var(--light-pink);
+            border-radius: 10px;
+        }
+
+        .products-container.horizontal-scroll::-webkit-scrollbar-thumb {
+            background: var(--accent-pink);
+            border-radius: 10px;
+        }
+
+        .products-container.horizontal-scroll .product-card {
+            min-width: 280px;
+            flex-shrink: 0;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-pink), var(--accent-pink));
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-card h3 {
+            padding: 1rem 1rem 0.5rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .product-card .description {
+            padding: 0 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .product-card .price {
+            padding: 0 1rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent-pink);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-actions {
+            padding: 1rem;
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(135deg, var(--accent-pink), var(--dark-pink));
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            transition: all 0.3s;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, var(--dark-pink), var(--accent-pink));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 105, 180, 0.4);
+        }
+
+        .add-to-wishlist {
+            background: var(--light-pink);
+            color: var(--accent-pink);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-to-wishlist:hover, .add-to-wishlist.active {
+            background: var(--accent-pink);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .buy-now {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            transition: all 0.3s;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+        }
+
+        .buy-now:hover {
+            background: linear-gradient(135deg, #ff8e8e, #ff6b6b);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, 
+                rgba(255, 182, 193, 0.9), 
+                rgba(255, 105, 180, 0.9));
+            color: var(--white);
+            padding: 1.5rem 0;
+            text-align: center;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .search-bar {
+                margin: 0;
+                max-width: 100%;
+            }
+            
+            .nav-menu {
+                width: 100%;
+                justify-content: space-between;
+                overflow-x: auto;
+            }
+            
+            .categories-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .category-filters {
+                justify-content: center;
+            }
+            
+            .products-container.horizontal-scroll .product-card {
+                min-width: 250px;
+            }
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-pink);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="assets/logo.jpg" alt="PinkStationery Logo">
+                <h1>PinkStationery</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="categories.html" class="active"><i class="fas fa-th-large"></i> Categories</a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count">0</span></a>
+                <a href="wishlist.html"><i class="fas fa-heart"></i> Wishlist <span class="wishlist-count">0</span></a>
+                <a href="orders.html"><i class="fas fa-box"></i> Orders</a>
+                <a href="login.html"><i class="fas fa-user"></i> Account</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="categories-header">
+            <h2>All Products</h2>
+            <div class="category-filters">
+                <select class="filter-select" id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="pens">Pens</option>
+                    <option value="notebooks">Notebooks</option>
+                    <option value="art-supplies">Art Supplies</option>
+                    <option value="bags">Bags</option>
+                </select>
+                <select class="filter-select" id="sort-filter">
+                    <option value="default">Sort By</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-container" id="products-container">
+            <!-- Products will be loaded here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2023 PinkStationery. All rights reserved. | Your one-stop stationery shop</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            updateWishlistCount();
+            loadProducts();
+            
+            // Add event listeners for filters
+            document.getElementById('category-filter').addEventListener('change', filterProducts);
+            document.getElementById('sort-filter').addEventListener('change', sortProducts);
+            
+            // Check for search parameter in URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('search');
+            if (searchTerm) {
+                document.querySelector('.search-bar input').value = searchTerm;
+                filterProductsBySearch(searchTerm);
+            }
+        });
+
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+        }
+
+        // Update wishlist count
+        function updateWishlistCount() {
+            const wishlistCount = document.querySelector('.wishlist-count');
+            if (wishlistCount) {
+                wishlistCount.textContent = wishlist.length;
+            }
+        }
+
+        // Load products
+        function loadProducts() {
+            const products = getDefaultProducts();
+            displayProducts(products);
+        }
+
+        // Get default products
+        function getDefaultProducts() {
+            return [
+                {
+                    id: '1',
+                    name: 'School Backpack',
+                    price: 499,
+                    description: 'Water-resistant backpack with multiple compartments',
+                    category: 'bags',
+                    image: 'bag.jpg'
+                },
+                {
+                    id: '2',
+                    name: 'Color Pencil Set',
+                    price: 349,
+                    description: '36 vibrant color pencils for artists',
+                    category: 'art-supplies',
+                    image: 'colors.jpg'
+                },
+                {
+                    id: '3',
+                    name: 'Premium Notebook',
+                    price: 199,
+                    description: 'High-quality notebook with 200 pages',
+                    category: 'notebooks',
+                    image: 'notebook.jpg'
+                },
+                {
+                    id: '4',
+                    name: 'Gel Pen Set',
+                    price: 149,
+                    description: 'Set of 12 smooth-writing gel pens',
+                    category: 'pens',
+                    image: 'pen.jpg'
+                },
+                {
+                    id: '5',
+                    name: 'Sticky Notes',
+                    price: 99,
+                    description: 'Pack of 5 colorful sticky note pads',
+                    category: 'office-supplies',
+                    image: 'pen.jpg'
+                },
+                {
+                    id: '6',
+                    name: 'Watercolor Set',
+                    price: 599,
+                    description: '24-color watercolor paint set with brush',
+                    category: 'art-supplies',
+                    image: 'colors.jpg'
+                },
+                {
+                    id: '7',
+                    name: 'Pencil Case',
+                    price: 199,
+                    description: 'Durable pencil case with multiple compartments',
+                    category: 'bags',
+                    image: 'bag.jpg'
+                },
+                {
+                    id: '8',
+                    name: 'Highlighters',
+                    price: 129,
+                    description: 'Set of 6 fluorescent highlighters',
+                    category: 'pens',
+                    image: 'pen.jpg'
+                }
+            ];
+        }
+
+        // Display products
+        function displayProducts(products) {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+            
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product-card';
+                productElement.setAttribute('data-category', product.category);
+                productElement.innerHTML = `
+                    <img src="assets/productimages/${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="description">${product.description}</p>
+                    <p class="price">₹${product.price}</p>
+                    <div class="product-actions">
+                        <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                        <div style="display: flex; gap: 0.5rem; justify-content: space-between;">
+                            <button class="add-to-wishlist" data-id="${product.id}">
+                                <i class="far fa-heart"></i>
+                            </button>
+                            <button class="buy-now" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(productElement);
+            });
+            
+            // Add event listeners
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+            
+            const addToWishlistButtons = document.querySelectorAll('.add-to-wishlist');
+            addToWishlistButtons.forEach(button => {
+                button.addEventListener('click', toggleWishlist);
+                
+                // Update wishlist button state
+                const productId = button.getAttribute('data-id');
+                if (wishlist.some(item => item.id === productId)) {
+                    button.classList.add('active');
+                    button.innerHTML = '<i class="fas fa-heart"></i>';
+                }
+            });
+            
+            const buyNowButtons = document.querySelectorAll('.buy-now');
+            buyNowButtons.forEach(button => {
+                button.addEventListener('click', buyNow);
+            });
+        }
+
+        // Add to cart function
+        function addToCart(event) {
+            const button = event.currentTarget;
+            const productId = button.getAttribute('data-id');
+            const productName = button.getAttribute('data-name');
+            const productPrice = parseFloat(button.getAttribute('data-price'));
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showNotification(`${productName} added to cart!`);
+        }
+
+        // Toggle wishlist function
+        function toggleWishlist(event) {
+            const button = event.currentTarget;
+            const productId = button.getAttribute('data-id');
+            const productName = button.closest('.product-card').querySelector('h3').textContent;
+            const productPrice = parseFloat(button.closest('.product-card').querySelector('.price').textContent.replace('₹', ''));
+            
+            const existingIndex = wishlist.findIndex(item => item.id === productId);
+            
+            if (existingIndex !== -1) {
+                wishlist.splice(existingIndex, 1);
+                button.classList.remove('active');
+                button.innerHTML = '<i class="far fa-heart"></i>';
+                showNotification(`${productName} removed from wishlist`);
+            } else {
+                wishlist.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice
+                });
+                button.classList.add('active');
+                button.innerHTML = '<i class="fas fa-heart"></i>';
+                showNotification(`${productName} added to wishlist!`);
+            }
+            
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            updateWishlistCount();
+        }
+
+        // Buy now function
+        function buyNow(event) {
+            const button = event.currentTarget;
+            const productId = button.getAttribute('data-id');
+            const productName = button.getAttribute('data-name');
+            const productPrice = parseFloat(button.getAttribute('data-price'));
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            window.location.href = 'cart.html';
+        }
+
+        // Filter products by category
+        function filterProducts() {
+            const category = document.getElementById('category-filter').value;
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Sort products
+        function sortProducts() {
+            const sortBy = document.getElementById('sort-filter').value;
+            const container = document.getElementById('products-container');
+            const productCards = Array.from(container.querySelectorAll('.product-card'));
+            
+            productCards.sort((a, b) => {
+                const aPrice = parseFloat(a.querySelector('.price').textContent.replace('₹', ''));
+                const bPrice = parseFloat(b.querySelector('.price').textContent.replace('₹', ''));
+                const aName = a.querySelector('h3').textContent;
+                const bName = b.querySelector('h3').textContent;
+                
+                switch(sortBy) {
+                    case 'price-low':
+                        return aPrice - bPrice;
+                    case 'price-high':
+                        return bPrice - aPrice;
+                    case 'name':
+                        return aName.localeCompare(bName);
+                    default:
+                        return 0;
+                }
+            });
+            
+            container.innerHTML = '';
+            productCards.forEach(card => {
+                container.appendChild(card);
+            });
+            
+            reattachEventListeners();
+        }
+
+        // Filter products by search term
+        function filterProductsBySearch(searchTerm) {
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                const productName = card.querySelector('h3').textContent.toLowerCase();
+                
+                if (productName.includes(searchTerm.toLowerCase())) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Reattach event listeners
+        function reattachEventListeners() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+            
+            const addToWishlistButtons = document.querySelectorAll('.add-to-wishlist');
+            addToWishlistButtons.forEach(button => {
+                button.addEventListener('click', toggleWishlist);
+            });
+            
+            const buyNowButtons = document.querySelectorAll('.buy-now');
+            buyNowButtons.forEach(button => {
+                button.addEventListener('click', buyNow);
+            });
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `<p>${message}</p>`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
